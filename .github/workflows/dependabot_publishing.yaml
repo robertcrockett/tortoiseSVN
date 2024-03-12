@@ -17,8 +17,8 @@ jobs:
         uses: robertcrockett/dependabot-alert-export@v2
         with:
           GITHUB_TOKEN: ${{secrets.PAT_TOKEN}}
-          org_name: 'robertcrockett'
-          repo_name: 'rancher-desktop'
+          org_name: "robertcrockett"
+          repo_name: "tortoiseSVN"
           csv_path: data/vulnerability.csv
 
       - name: Upload Vulnerability report
