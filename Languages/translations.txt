@@ -1,0 +1,74 @@
+﻿Translations
+------------
+
+TortoiseSVN is still in development so translations of all resources is
+also a work 'in progress'.
+
+General
+-------
+The TortoiseSVN project uses gettext PO (portable object) files for its
+translation. PO files are plain text, so you can even translate using a
+normal text editor. The only thing you have to take care of is that the
+editor can handle the UTF-8 charset. There is a wide range of tools out
+there that can handle and manipulate PO files. The preferred way however
+is to translate using transifex.com.
+
+Translating using transifex.com
+-------------------------------
+Visit transifex.com and register an account there. After having done this,
+go to the TortoiseSVN translation project and request to join a language
+team of your choice.
+
+Transifex has a nice web interface. You can edit everything there, but you
+can also download the .po file, work offline using your preferred editor and
+upload the .po file to transifex again.
+
+We take care of synchronizing the translations between transifex.com and our
+repository.
+
+If you want to start a new language, contact us on https://groups.google.com/g/tortoisesvn-dev
+
+Important
+---------
+Please pay special attention to cases where placeholders for variables like
+"%s" or "%d" appear in the original text. They have to be in the exact
+same order in the translation, which means that you sometimes have to
+use "bad" grammar  in your language. If you reverse the parameters
+it may crash the translated application.
+
+What now?
+---------
+That's all you have to do. We'll take care of creating the resource dlls
+and installers for the different language packs.
+
+Building your own dlls
+----------------------
+If you want to test the translations you made yourself, before you release
+them, you need four things:
+
+- The "raw" language resource dlls for your version of TortoiseSVN. Please ask on
+  the developers list. We'll gladly provide you with the necessary files.
+- The pot file for your version of TortoiseSVN e.g:
+  https://svn.code.sf.net/p/tortoisesvn/code/tags/version_1.0.8/...
+- Any po file for your language. Either pick one from tags or the latest
+  po file from trunk
+- The ResText utility that is used to insert the data from the po file
+  into your resource dlls:
+  http://tortoisesvn.tigris.org/files/documents/406/14560/ResText.zip
+
+Once you finished your installation, you run:
+
+restext apply TortoiseProcLang.dll ..\bin\TortoiseProcNNNN.dll Tortoise_CC.po
+restext apply TortoiseMergeLang.dll ..\bin\TortoiseMergeNNNN.dll Tortoise_CC.po
+
+where NNNN is your four digit country code (1031 for germany)
+and CC is your 2 letter country code (de for germany)
+
+You can find the four digit country code at
+http://www.microsoft.com/globaldev/reference/lcid-all.mspx
+under the column LCID dec.
+
+After successfully creating your dlls, copy them into:
+C:\Program Files\TortoiseSVN\Languages
+Now you should be able to select your language from the combobox on the
+TortoiseSVN main setting page.
